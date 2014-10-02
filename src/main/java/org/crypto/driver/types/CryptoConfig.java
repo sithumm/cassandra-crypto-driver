@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.crypto.driver.keymanagement.CustomKeyPair;
-import org.crypto.driver.wrapper.BaseIntDecorator;
 
 public class CryptoConfig {
 	

@@ -8,13 +8,10 @@ import java.util.UUID;
 
 import junit.framework.Assert;
 
-import org.crypto.driver.function.HECryptoFunction;
 import org.crypto.driver.keymanagement.AssymetricKeyManager;
 import org.crypto.driver.keymanagement.CustomKeyPair;
 import org.crypto.driver.types.CryptoConfig;
 import org.crypto.driver.types.CryptoInt;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
