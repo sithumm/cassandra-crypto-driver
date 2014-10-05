@@ -7,12 +7,12 @@ import org.crypto.driver.types.CryptoConfig;
 import thep.paillier.EncryptedInteger;
 import thep.paillier.exceptions.BigIntegerClassNotValid;
 
-public class HECryptoFunction implements ICryptoFunction {
+public class PaillierCryptoFunction implements ICryptoFunction {
 	
 	private CryptoConfig config;
 	private Object value;
 
-	public HECryptoFunction(Object value, CryptoConfig config) {
+	public PaillierCryptoFunction(Object value, CryptoConfig config) {
 		this.config = config;
 		this.value = value;
 	}

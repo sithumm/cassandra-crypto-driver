@@ -19,7 +19,7 @@ import org.junit.Test;
  * @author sithum
  *
  */
-public class HEDecoratorTest {
+public class PaillierDecoratorTest {
 
 	private static CryptoConfig config;
 	private static CryptoInt p;
@@ -35,29 +35,29 @@ public class HEDecoratorTest {
 	}
 
 	/**
-	 * Test method for {@link org.crypto.driver.wrapper.HEDecorator#getValue()}.
+	 * Test method for {@link org.crypto.driver.wrapper.PaillierDecorator#getValue()}.
 	 */
 	@Test
 	public void testGetEncryptedValue() throws Exception {
 		config.setMode(CryptoConfig.ENCRYPT_MODE);
-		HEDecorator function = new HEDecorator(p, config);
+		PaillierDecorator function = new PaillierDecorator(p, config);
 		BigInteger encInt = (BigInteger) function.getValue();
 		Assert.assertNotNull(encInt);
 		Assert.assertFalse(encInt.equals(p.getValue()));
 	}
 
 	/**
-	 * Test method for {@link org.crypto.driver.wrapper.HEDecorator#HEDecorator(org.crypto.driver.types.BaseInt, org.crypto.driver.types.BaseInt.CryptoConfig)}.
+	 * Test method for {@link org.crypto.driver.wrapper.PaillierDecorator#HEDecorator(org.crypto.driver.types.BaseInt, org.crypto.driver.types.BaseInt.CryptoConfig)}.
 	 */
 	@Test
 	public void testGetDecryptedValue() throws Exception {
 		config.setMode(CryptoConfig.ENCRYPT_MODE);
-		HEDecorator decorator = new HEDecorator(p, config);
+		PaillierDecorator decorator = new PaillierDecorator(p, config);
 		BigInteger encInt = (BigInteger) decorator.getValue();
 		
 		config.setMode(CryptoConfig.DECRYPT_MODE);
 		p = new CryptoInt(encInt);
-		decorator = new HEDecorator(p, config);
+		decorator = new PaillierDecorator(p, config);
 		BigInteger plainValue = (BigInteger) decorator.getValue();
 		Assert.assertNotNull(plainValue);
 		Assert.assertTrue(plainValue.equals(new BigInteger("3000")));

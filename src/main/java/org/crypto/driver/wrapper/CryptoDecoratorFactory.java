@@ -12,7 +12,7 @@ public class CryptoDecoratorFactory {
 		if (AES_DECORATOR.equalsIgnoreCase(type)) {
 			return new AESDecorator(baseInt, config);
 		} else {
-			return new HEDecorator(baseInt, config);
+			return new PaillierDecorator(baseInt, config);
 		}
 	}
 

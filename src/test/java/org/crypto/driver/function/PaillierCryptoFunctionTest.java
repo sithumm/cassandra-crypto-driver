@@ -5,7 +5,7 @@ import java.util.UUID;
 
 import junit.framework.Assert;
 
-import org.crypto.driver.function.HECryptoFunction;
+import org.crypto.driver.function.PaillierCryptoFunction;
 import org.crypto.driver.keymanagement.AssymetricKeyManager;
 import org.crypto.driver.keymanagement.CustomKeyPair;
 import org.crypto.driver.types.CryptoConfig;
@@ -15,7 +15,7 @@ import org.junit.Test;
 
 import thep.paillier.exceptions.BigIntegerClassNotValid;
 
-public class HECryptoFunctionTest {
+public class PaillierCryptoFunctionTest {
 
 	private static CryptoConfig config;
 	private static CryptoInt p;
@@ -33,7 +33,7 @@ public class HECryptoFunctionTest {
 	@Test
 	public void testEncrypt() throws BigIntegerClassNotValid {
 		config.setMode(CryptoConfig.ENCRYPT_MODE);
-		HECryptoFunction function = new HECryptoFunction(p.getValue(), config);
+		PaillierCryptoFunction function = new PaillierCryptoFunction(p.getValue(), config);
 		BigInteger encInt = (BigInteger) function.encrypt();
 		System.out.println(encInt);
 		Assert.assertNotNull(encInt);
@@ -43,12 +43,12 @@ public class HECryptoFunctionTest {
 	@Test
 	public void testDecrypt() throws BigIntegerClassNotValid {
 		config.setMode(CryptoConfig.ENCRYPT_MODE);
-		HECryptoFunction function = new HECryptoFunction(p.getValue(), config);
+		PaillierCryptoFunction function = new PaillierCryptoFunction(p.getValue(), config);
 		BigInteger encInt = (BigInteger) function.encrypt();
 		System.out.println(encInt);
 		
 		config.setMode(CryptoConfig.DECRYPT_MODE);
-		function = new HECryptoFunction(encInt, config);
+		function = new PaillierCryptoFunction(encInt, config);
 		BigInteger plainValue = (BigInteger) function.decrypt();
 		Assert.assertNotNull(plainValue);
 		Assert.assertTrue(plainValue.equals(p.getValue()));

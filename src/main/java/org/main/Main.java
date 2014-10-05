@@ -12,7 +12,7 @@ import org.crypto.driver.types.BaseInt;
 import org.crypto.driver.types.CryptoConfig;
 import org.crypto.driver.types.CryptoInt;
 import org.crypto.driver.wrapper.AESDecorator;
-import org.crypto.driver.wrapper.HEDecorator;
+import org.crypto.driver.wrapper.PaillierDecorator;
 
 import thep.paillier.EncryptedInteger;
 import thep.paillier.exceptions.BigIntegerClassNotValid;
@@ -94,7 +94,7 @@ public class Main {
 		config.setInstanceId(UUID.randomUUID().toString());
 		
 		System.out.println("HE :: Encrypting int1");
-		BaseInt decorator = new HEDecorator(int1, config);
+		BaseInt decorator = new PaillierDecorator(int1, config);
 		System.out.println("HE :: Encrypted int1 :: " + decorator.getValue());
 		
 		config = null;
