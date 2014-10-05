@@ -15,6 +15,7 @@ public class PaillierDecorator extends BaseIntDecorator {
 	@Override
 	public Object getValue() {
 		PaillierCryptoFunction function = new PaillierCryptoFunction(super.getValue(), config);
+		config.setAlgorithm("HE/Paillier");
 		if (CryptoConfig.ENCRYPT_MODE.equalsIgnoreCase(config.getMode())) {
 			try {
 				return function.encrypt();

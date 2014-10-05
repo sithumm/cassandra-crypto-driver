@@ -11,7 +11,7 @@ import org.crypto.driver.keymanagement.SymmetricKeyManager;
 import org.crypto.driver.types.BaseInt;
 import org.crypto.driver.types.CryptoConfig;
 import org.crypto.driver.types.CryptoInt;
-import org.crypto.driver.wrapper.AESDecorator;
+import org.crypto.driver.wrapper.AESCBCDecorator;
 import org.crypto.driver.wrapper.PaillierDecorator;
 
 import thep.paillier.EncryptedInteger;
@@ -106,7 +106,7 @@ public class Main {
 		config.setInstanceId(UUID.randomUUID().toString());
 		
 		System.out.println("AES :: Encrypting int1");
-		decorator = new AESDecorator(decorator, config);
+		decorator = new AESCBCDecorator(decorator, config);
 		System.out.println("AES :: Encrypted int1 :: " + decorator.getValue());
 		
 		return decorator;
@@ -122,7 +122,7 @@ public class Main {
 		config.setInstanceId(UUID.randomUUID().toString());
 		
 		System.out.println("AES :: Decrypting int1");
-		BaseInt  decorator = new AESDecorator(int1, config);
+		BaseInt  decorator = new AESCBCDecorator(int1, config);
 		System.out.println("AES :: Decrypted int1 :: " + decorator.getValue());
 		
 		/*config = null;

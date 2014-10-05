@@ -20,7 +20,7 @@ import org.junit.Test;
  * @author sithum
  *
  */
-public class AESDecoratorTest {
+public class AESCBCDecoratorTest {
 
 	private static CryptoConfig config;
 	private static CryptoInt p;
@@ -37,13 +37,13 @@ public class AESDecoratorTest {
 	}
 
 	/**
-	 * Test method for {@link org.crypto.driver.wrapper.AESDecorator#getValue()}.
+	 * Test method for {@link org.crypto.driver.wrapper.AESCBCDecorator#getValue()}.
 	 */
 	@Test
 	public void testGetEncryptedValue() throws Exception {
 		config.setMode(CryptoConfig.ENCRYPT_MODE);
 		config.setIv(SecureRandom.getSeed(16));
-		AESDecorator decorator = new AESDecorator(p, config);
+		AESCBCDecorator decorator = new AESCBCDecorator(p, config);
 		BigInteger encInt = (BigInteger) decorator.getValue();
 		Assert.assertNotNull(encInt);
 		Assert.assertFalse(encInt.equals(p.getValue()));
@@ -53,13 +53,13 @@ public class AESDecoratorTest {
 	public void testGetDecryptedValue() throws Exception {
 		config.setMode(CryptoConfig.ENCRYPT_MODE);
 		config.setIv(SecureRandom.getSeed(16));
-		AESDecorator decorator = new AESDecorator(p, config);
+		AESCBCDecorator decorator = new AESCBCDecorator(p, config);
 		BigInteger encInt = (BigInteger) decorator.getValue();
 		System.out.println(encInt);
 		
 		config.setMode(CryptoConfig.DECRYPT_MODE);
 		p = new CryptoInt(encInt);
-		decorator = new AESDecorator(p, config);
+		decorator = new AESCBCDecorator(p, config);
 		BigInteger plainValue = (BigInteger) decorator.getValue();
 		Assert.assertNotNull(plainValue);
 		Assert.assertTrue(plainValue.equals(new BigInteger("3000")));

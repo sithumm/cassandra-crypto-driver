@@ -13,15 +13,16 @@ import org.crypto.driver.function.AESCryptoFunction;
 import org.crypto.driver.types.CryptoConfig;
 import org.crypto.driver.types.BaseInt;
 
-public class AESDecorator extends BaseIntDecorator {
+public class AESCBCDecorator extends BaseIntDecorator {
 
-	public AESDecorator(BaseInt baseInt, CryptoConfig config) {
+	public AESCBCDecorator(BaseInt baseInt, CryptoConfig config) {
 		super(baseInt, config);
 	}
 	
 	@Override
 	public Object getValue() {
 		AESCryptoFunction function = new AESCryptoFunction(super.getValue(), config);
+		config.setAlgorithm("AES/CBC/PKCS5Padding");
 		if (CryptoConfig.ENCRYPT_MODE.equalsIgnoreCase(config.getMode())) {
 			try {
 				return function.encrypt();

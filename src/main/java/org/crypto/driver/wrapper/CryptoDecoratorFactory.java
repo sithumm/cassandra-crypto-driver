@@ -10,7 +10,7 @@ public class CryptoDecoratorFactory {
 
 	public static BaseIntDecorator getBaseIntDecorator(String type, BaseInt baseInt, CryptoConfig config) {
 		if (AES_DECORATOR.equalsIgnoreCase(type)) {
-			return new AESDecorator(baseInt, config);
+			return new AESCBCDecorator(baseInt, config);
 		} else {
 			return new PaillierDecorator(baseInt, config);
 		}
