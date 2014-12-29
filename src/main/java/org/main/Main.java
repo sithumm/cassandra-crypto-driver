@@ -5,6 +5,9 @@ import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 
+import javax.crypto.Cipher;
+import javax.xml.bind.DatatypeConverter;
+
 import org.crypto.driver.keymanagement.AssymetricKeyManager;
 import org.crypto.driver.keymanagement.CustomKeyPair;
 import org.crypto.driver.keymanagement.SymmetricKeyManager;
@@ -28,14 +31,14 @@ public class Main {
 		
 		CustomKeyPair keyPair = AssymetricKeyManager.getInstance().generateKeyPair(256);
 		AssymetricKeyManager.getInstance().persistKeys("test_he_pair1", keyPair);
-		Key key = SymmetricKeyManager.getInstance().generateSecretKey("AES", 128);
+		Key key = SymmetricKeyManager.getInstance().generateSecretKey("AES", 256);
 		SymmetricKeyManager.getInstance().persistKeys("test_aes_key", key);
 		
 		System.out.println("Key generation complete.\n");
 		
 		System.out.println("====================================================================================\n");
 		
-		System.out.println("Start encrypting int1");
+		System.out.println("Start encrypting int1 :: 8000");
 		BaseInt encrypted1 = encrypt(int1);
 		System.out.println("Finished encrypting int1 :: " + encrypted1.getValue());
 		
@@ -43,7 +46,7 @@ public class Main {
 		save();
 		System.out.println("\n------------------------------------------------------------------------------------\n");
 				
-		System.out.println("Start encrypting int2");
+		System.out.println("Start encrypting int2 :: 13000");
 		BaseInt encrypted2 = encrypt(int2);
 		System.out.println("Finished encrypting int2 :: " + encrypted2.getValue());
 		
@@ -79,6 +82,11 @@ public class Main {
 	
 		System.out.println("====================================================================================\n");
 		System.out.println("Decrypted result :: " + added.decrypt(keyPair.getPrivateKey()));
+		
+		int maxKeyLen = Cipher.getMaxAllowedKeyLength("AES");
+	    System.out.println(maxKeyLen);
+		
+		System.exit(0);
 	}
 	
 	private static void save() {
@@ -108,6 +116,7 @@ public class Main {
 		System.out.println("AES :: Encrypting int1");
 		decorator = new AESCBCDecorator(decorator, config);
 		System.out.println("AES :: Encrypted int1 :: " + decorator.getValue());
+//		System.out.println("AES :: Encrypted int1 :: B64 :: " + DatatypeConverter.printHexBinary(decorator.getValue().toString().getBytes()));
 		
 		return decorator;
 	}

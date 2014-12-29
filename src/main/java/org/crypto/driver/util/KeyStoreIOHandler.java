@@ -36,8 +36,7 @@ public class KeyStoreIOHandler {
 				} catch (KeyStoreException e) {
 					logger.log(Level.SEVERE, MessageFormat.format("{0}"+e.getMessage(), KeyStoreIOHandler.class.getName()), e);
 				}
-			}
-			return instance;
+			}			return instance;
 		}
 	}
 	

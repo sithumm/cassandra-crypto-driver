@@ -11,6 +11,9 @@ public class CryptoConfig {
 	public static final String ENCRYPT_MODE = "ENCRYPT_MODE";
 	public static final String DECRYPT_MODE = "DECRYPT_MODE";
 	
+	public static final String HE_PAILLIER = "HE/Paillier";
+	public static final String AES_CBC_PKCS5 = "AES/CBC/PKCS5Padding";
+	
 	private String algorithm;
 	private String instanceId;
 	private int keySize;
